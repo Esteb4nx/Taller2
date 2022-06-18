@@ -1,23 +1,42 @@
 <template>
   <h2>Tic tac toe</h2>
-  <div v-if="gato.turno" id="rick" class="mt-3 turno d-flex justify-content-center align-items-center">
+
+  <div v-if="gato.contador >= 8 && gato.ganador == ''" id="empate"
+    class="mt-3 turno d-flex justify-content-center align-items-center">
+    <p id="alerta">EMPATE </p>
+  </div>
+<div v-if="!(gato.contador >= 8 && gato.ganador == '')">
+  <div v-if="gato.turno && gato.ganador == ''" id="rick"
+    class="mt-3 turno d-flex justify-content-center align-items-center">
     <p id="alerta">Es el turno de: </p>
     <img width="60" height="60" src="@/assets/rick.png" alt="">
 
   </div>
 
-  <div v-if="!gato.turno" id="morty" class="mt-3 turno d-flex justify-content-center align-items-center">
+  <div v-if="!gato.turno && gato.ganador == ''" id="morty"
+    class="mt-3 turno d-flex justify-content-center align-items-center">
     <p id="alerta">Es el turno de: </p>
     <img width="60" height="60" src="@/assets/morty.png" alt="">
   </div>
-  
+
+  <div v-if="gato.ganador != ''" id="ganador" class="mt-3 turno d-flex justify-content-center align-items-center">
+    <p id="alerta">Ganador: </p>
+    <img v-if="gato.ganador == 'Rick'" width="60" height="60" src="@/assets/rick.png" alt="">
+    <img v-if="gato.ganador == 'Morty'" width="60" height="60" src="@/assets/morty.png" alt="">
+
+  </div>
+
+</div>
   <div class="mt-4 tablero">
-    <button class="casilla" @click="gato.cambiarEstado(index)" v-for="(ficha,index) in gato.fichas" :class="{'morty': ficha == 'Morty', 'rick': ficha == 'Rick'}" :key="index" :disabled="ficha != ''" >
+    <button class="casilla" @click="gato.cambiarEstado(index)" v-for="(ficha, index) in gato.fichas"
+      :class="{ 'morty': ficha == 'Morty', 'rick': ficha == 'Rick' }" :key="index" :disabled="ficha != ''">
       <img v-if="ficha == 'Morty'" src="@/assets/morty.png" alt="Morty">
       <img v-if="ficha == 'Rick'" src="@/assets/rick.png" alt="Rick">
     </button>
 
   </div>
+
+  <button class="mt-2 btn btn-warning" @click="gato.reiniciar()">Reiniciar</button>
 </template>
 
 <script>
@@ -26,10 +45,10 @@ import { useGatoStore } from '@/stores/useGatoStore'
 
 export default {
 
-  setup(){
+  setup() {
     const gato = useGatoStore()
 
-    return{
+    return {
       gato
     }
   }
@@ -38,7 +57,7 @@ export default {
 </script>
 
 <style>
-.turno{
+.turno {
   width: 412px;
   height: 80px;
   background-color: #f7f07b;
@@ -46,15 +65,15 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#alerta{
+#alerta {
   font-size: 24px;
   margin-right: 18px;
 }
 
 .tablero {
-    display: grid;
-    grid-template-rows: 140px 140px 140px;
-    grid-template-columns: 140px 140px 140px;
+  display: grid;
+  grid-template-rows: 140px 140px 140px;
+  grid-template-columns: 140px 140px 140px;
 }
 
 .casilla {
@@ -67,40 +86,49 @@ export default {
   margin: 4px;
 }
 
-.casilla:hover{
-    background: rgb(117, 117, 117);
-    border: 1px solid rgb(117, 117, 117);
-    /* cursor: pointer; */
+.casilla:hover {
+  background: rgb(117, 117, 117);
+  border: 1px solid rgb(117, 117, 117);
+  /* cursor: pointer; */
 }
 
-.casilla img{
+.casilla img {
   width: 100px;
 }
 
-#morty{
+#morty {
   background-color: #f7f07b;
 }
 
-#rick{
+#rick {
   background-color: #e89ac7;
 }
-.morty{
+
+.morty {
   background-color: #f7f07b;
 
 }
 
-.morty:hover{
+.morty:hover {
   background-color: #f7f07b;
 }
 
-.rick{
-  background-color: #e89ac7;
-
-}
-
-.rick:hover{
+.rick {
   background-color: #e89ac7;
 
 }
 
+.rick:hover {
+  background-color: #e89ac7;
+
+}
+
+#ganador {
+  background-color: #97ce4c;
+}
+
+#empate{
+  background-color: #444;
+  color: white;
+}
 </style>
