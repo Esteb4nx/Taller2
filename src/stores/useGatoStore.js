@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore({
-  id: 'counter',
+export const useGatoStore = defineStore({
+  id: 'gato',
   state: () => ({
-    fichas:["","","","","","","","",""]
+    fichas:["","","Morty","Rick","Rick","","","",""]
   }),
   actions: {
     cambiarEstado(state,index,estado){
@@ -11,3 +11,4 @@ export const useCounterStore = defineStore({
     }
   }
 })
+

@@ -1,6 +1,6 @@
 <template>
   <NavBar></NavBar>
-  <div class="mt-5 d-flex justify-content-center flex-column align-items-center">
+  <div class="mt-4 d-flex justify-content-center flex-column align-items-center">
     <GatoVue></GatoVue>
   </div>
 </template>
