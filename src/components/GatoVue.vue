@@ -12,7 +12,7 @@
   </div>
   
   <div class="mt-4 tablero">
-    <button @click="gato.cambiarEstado(index)" v-for="(ficha,index) in gato.fichas" :key="index" class="casilla" :disabled="ficha != ''" >
+    <button class="casilla" @click="gato.cambiarEstado(index)" v-for="(ficha,index) in gato.fichas" :class="{'morty': ficha == 'Morty', 'rick': ficha == 'Rick'}" :key="index" :disabled="ficha != ''" >
       <img v-if="ficha == 'Morty'" src="@/assets/morty.png" alt="Morty">
       <img v-if="ficha == 'Rick'" src="@/assets/rick.png" alt="Rick">
     </button>
@@ -83,6 +83,24 @@ export default {
 
 #rick{
   background-color: #e89ac7;
+}
+.morty{
+  background-color: #f7f07b;
+
+}
+
+.morty:hover{
+  background-color: #f7f07b;
+}
+
+.rick{
+  background-color: #e89ac7;
+
+}
+
+.rick:hover{
+  background-color: #e89ac7;
+
 }
 
 </style>
