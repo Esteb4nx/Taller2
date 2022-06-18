@@ -1,11 +1,11 @@
 <template>
   <h2>Tic tac toe</h2>
 
-  <div v-if="gato.contador >= 8 && gato.ganador == ''" id="empate"
+  <div v-if="gato.contador >= 9 && gato.ganador == ''" id="empate"
     class="mt-3 turno d-flex justify-content-center align-items-center">
     <p id="alerta">EMPATE </p>
   </div>
-<div v-if="!(gato.contador >= 8 && gato.ganador == '')">
+<div v-if="!(gato.contador >= 9 && gato.ganador == '')">
   <div v-if="gato.turno && gato.ganador == ''" id="rick"
     class="mt-3 turno d-flex justify-content-center align-items-center">
     <p id="alerta">Es el turno de: </p>
