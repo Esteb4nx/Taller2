@@ -1,11 +1,18 @@
 <template>
   <h2>Tic tac toe</h2>
-  <div class="mt-3 turno d-flex justify-content-center align-items-center">
+  <div v-if="gato.turno" id="rick" class="mt-3 turno d-flex justify-content-center align-items-center">
+    <p id="alerta">Es el turno de: </p>
+    <img width="60" height="60" src="@/assets/rick.png" alt="">
+
+  </div>
+
+  <div v-if="!gato.turno" id="morty" class="mt-3 turno d-flex justify-content-center align-items-center">
     <p id="alerta">Es el turno de: </p>
     <img width="60" height="60" src="@/assets/morty.png" alt="">
   </div>
+  
   <div class="mt-4 tablero">
-    <button v-for="(ficha,index) in gato.fichas" :key="index" class="casilla">
+    <button @click="gato.cambiarEstado(index)" v-for="(ficha,index) in gato.fichas" :key="index" class="casilla" :disabled="ficha != ''" >
       <img v-if="ficha == 'Morty'" src="@/assets/morty.png" alt="Morty">
       <img v-if="ficha == 'Rick'" src="@/assets/rick.png" alt="Rick">
     </button>
@@ -22,10 +29,8 @@ export default {
   setup(){
     const gato = useGatoStore()
 
-    let turno = false
     return{
-      gato,
-      turno
+      gato
     }
   }
 
@@ -71,4 +76,13 @@ export default {
 .casilla img{
   width: 100px;
 }
+
+#morty{
+  background-color: #f7f07b;
+}
+
+#rick{
+  background-color: #e89ac7;
+}
+
 </style>
